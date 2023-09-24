@@ -15,7 +15,7 @@ describe("Create new employee by API and fill that employee details info by UI  
     cy.get("@EmpInfo").then((infoData: any) => {
       cy.request({
         method: "POST",
-        url: "https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/pim/employees",
+        url: "/web/index.php/api/v2/pim/employees",
         body: {
           firstName: infoData.supervisor.firstName,
           middleName: infoData.supervisor.middleName,
@@ -32,7 +32,7 @@ describe("Create new employee by API and fill that employee details info by UI  
     cy.get("@EmpInfo").then((infoData: any) => {
       cy.request({
         method: "POST",
-        url: "https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/pim/employees",
+        url: "/web/index.php/api/v2/pim/employees",
         body: {
           firstName: infoData.user.firstName,
           middleName: infoData.user.middleName,
@@ -55,6 +55,7 @@ describe("Create new employee by API and fill that employee details info by UI  
   it("Add Employee Info by UI ", () => {
     cy.get("@EmpInfo").then((infoData: any) => {
       pimObj.addEmployeeInfo(infoData.user, infoData.supervisor);
+      pimObj.checkSearchById(infoData.user, infoData.supervisor);
     });
   });
 });
