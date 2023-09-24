@@ -216,7 +216,9 @@ class PIM {
     this.elements.MainMenuItems().contains("PIM").click({
       force: true,
     });
+  }
     // search by Id
+    checkSearchById(user: any, supervisor: any) {
     this.elements.id().type(user.id);
     this.elements.searchBtn().click({
       force: true,
