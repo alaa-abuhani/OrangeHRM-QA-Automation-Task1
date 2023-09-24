@@ -97,7 +97,7 @@ class PIM {
   };
   successAddEmployee(empNum: number, firstName: any, lastName: any) {
     cy.visit(
-      `https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewPersonalDetails/empNumber/${empNum}`
+      `/web/index.php/pim/viewPersonalDetails/empNumber/${empNum}`
     );
     this.elements.success().should("contain", firstName + " " + lastName);
   }
