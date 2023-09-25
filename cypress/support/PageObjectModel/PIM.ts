@@ -67,8 +67,15 @@ class PIM {
     saveSuper: () => cy.get(".oxd-button--secondary"),
   };
   successAddEmployee(empNum: number, firstName: any, lastName: any) {
+<<<<<<< HEAD
     cy.visit(`/web/index.php/pim/viewPersonalDetails/empNumber/${empNum}`);
     this.elements.employeeName().should("contain", firstName + " " + lastName);
+=======
+    cy.visit(
+      `/web/index.php/pim/viewPersonalDetails/empNumber/${empNum}`
+    );
+    this.elements.success().should("contain", firstName + " " + lastName);
+>>>>>>> 1c64cad589453635d8059e9735ee4006b7b4ebe7
   }
   addEmpDetailsInfo(user: any, supervisor: any) {
     //select license Expiry Date
@@ -182,6 +189,24 @@ class PIM {
     this.elements.MainMenuItems().contains("PIM").click({
       force: true,
     });
+<<<<<<< HEAD
+=======
+  }
+    // search by Id
+    checkSearchById(user: any, supervisor: any) {
+    this.elements.id().type(user.id);
+    this.elements.searchBtn().click({
+      force: true,
+    });
+    this.elements.search
+      .first_middle_name()
+      .should("contain", user.firstName + " " + user.middleName);
+    this.elements.search.last_name().should("contain", user.lastName);
+    this.elements.search.job_title().should("contain", user.jobTitle);
+    this.elements.search.emp_status().should("contain", user.empStatus);
+    this.elements.search.sub_unit().should("contain", user.subUnit);
+    this.elements.search.supervisor().should("contain", supervisor.firstName);
+>>>>>>> 1c64cad589453635d8059e9735ee4006b7b4ebe7
   }
 }
 export default PIM;

@@ -57,8 +57,13 @@ describe("Create new employee by API and fill that employee details info by UI  
 
   it("Add Employee Info by UI ", () => {
     cy.get("@EmpInfo").then((infoData: any) => {
+<<<<<<< HEAD
       pimObj.addEmpDetailsInfo(infoData.user, infoData.supervisor);
       empTableObj.checkSearchById(infoData.user, infoData.supervisor);
+=======
+      pimObj.addEmployeeInfo(infoData.user, infoData.supervisor);
+      pimObj.checkSearchById(infoData.user, infoData.supervisor);
+>>>>>>> 1c64cad589453635d8059e9735ee4006b7b4ebe7
     });
   });
 });
