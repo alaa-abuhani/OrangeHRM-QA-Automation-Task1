@@ -1,7 +1,6 @@
 class PIM {
   elements = {
     MainMenuItems: () => cy.get(".oxd-sidepanel-body"),
-    switch: () => cy.get(".oxd-switch-input"),
     employeeName: () =>
       cy.get(".orangehrm-edit-employee-name > .oxd-text", {
         timeout: 20000,
