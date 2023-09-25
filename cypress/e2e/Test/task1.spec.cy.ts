@@ -15,16 +15,16 @@ describe("Create new employee by API and fill that employee details info by UI  
     loginObj.login("Admin", "admin123");
 
     //Add new Supervisor by Api to assign it to the empolyee info add in next step
-    cy.get("@EmpInfo").then((infoData: any) => {
+    cy.get("@EmpInfo").then((EmpInfo: any) => {
       cy.request({
         method: "POST",
         url: "/web/index.php/api/v2/pim/employees",
         body: {
-          firstName: infoData.supervisor.firstName,
-          middleName: infoData.supervisor.middleName,
-          lastName: infoData.supervisor.lastName,
+          firstName: EmpInfo.supervisor.firstName,
+          middleName: EmpInfo.supervisor.middleName,
+          lastName: EmpInfo.supervisor.lastName,
           empPicture: null,
-          employeeId: infoData.supervisor.id,
+          employeeId: EmpInfo.supervisor.id,
         },
       }).then((response) => {
         expect(response).property("status").to.equal(200);
@@ -32,33 +32,33 @@ describe("Create new employee by API and fill that employee details info by UI  
     });
 
     //Add new Employee by API
-    cy.get("@EmpInfo").then((infoData: any) => {
+    cy.get("@EmpInfo").then((EmpInfo: any) => {
       cy.request({
         method: "POST",
         url: "/web/index.php/api/v2/pim/employees",
         body: {
-          firstName: infoData.user.firstName,
-          middleName: infoData.user.middleName,
-          lastName: infoData.user.lastName,
+          firstName: EmpInfo.user.firstName,
+          middleName: EmpInfo.user.middleName,
+          lastName: EmpInfo.user.lastName,
           empPicture: null,
-          employeeId: infoData.user.id,
+          employeeId: EmpInfo.user.id,
         },
       }).then((response) => {
         expect(response).property("status").to.equal(200);
         const empNumber = response.body.data.empNumber;
         pimObj.successAddEmployee(
           empNumber,
-          infoData.user.firstName,
-          infoData.user.lastName
+          EmpInfo.user.firstName,
+          EmpInfo.user.lastName
         );
       });
     });
   });
 
   it("Add Employee Info by UI ", () => {
-    cy.get("@EmpInfo").then((infoData: any) => {
-      pimObj.addEmpDetailsInfo(infoData.user, infoData.supervisor);
-      empTableObj.checkSearchById(infoData.user, infoData.supervisor);
+    cy.get("@EmpInfo").then((EmpInfo: any) => {
+      pimObj.addEmpDetailsInfo(EmpInfo.user, EmpInfo.supervisor);
+      empTableObj.checkSearchById(EmpInfo.user, EmpInfo.supervisor);
     });
   });
 });

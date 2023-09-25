@@ -3,11 +3,11 @@ class PIM {
     MainMenuItems: () => cy.get(".oxd-sidepanel-body"),
     employeeName: () =>
       cy.get(".orangehrm-edit-employee-name > .oxd-text", {
-        timeout: 20000,
+        timeout: 2000,
       }),
     loader: () =>
       cy.get(".oxd-loading-spinner", {
-        timeout: 20000,
+        timeout: 2000,
       }),
     //info Employee Details
     calender: () => cy.get(".oxd-calendar-wrapper"),
