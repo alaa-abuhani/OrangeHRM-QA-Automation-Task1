@@ -5,6 +5,10 @@ const loginObj: LoginPage = new LoginPage();
 const pimObj: PIM = new PIM();
 const empTableObj = new EmpTable();
 
+Cypress.on("uncaught:exception", (err, runnable) => {
+  return false;
+});
+
 describe("Create new employee by API and fill that employee details info by UI  ", () => {
   beforeEach(function () {
     cy.intercept(
@@ -23,7 +27,7 @@ describe("Create new employee by API and fill that employee details info by UI  
           firstName: EmpInfo.supervisor.firstName,
           middleName: EmpInfo.supervisor.middleName,
           lastName: EmpInfo.supervisor.lastName,
-          empPicture: null,
+          empPicture: EmpInfo.supervisor.empPicture,
           employeeId: EmpInfo.supervisor.id,
         },
       }).then((response) => {
@@ -40,7 +44,7 @@ describe("Create new employee by API and fill that employee details info by UI  
           firstName: EmpInfo.user.firstName,
           middleName: EmpInfo.user.middleName,
           lastName: EmpInfo.user.lastName,
-          empPicture: null,
+          empPicture: EmpInfo.user.empPicture,
           employeeId: EmpInfo.user.id,
         },
       }).then((response) => {

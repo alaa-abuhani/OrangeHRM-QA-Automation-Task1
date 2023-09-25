@@ -4,6 +4,7 @@
     "firstName": "alaa",
     "middleName": "ghaleb",
     "lastName": "abuhani",
+    "empPicture": null,
     "maritalStatus": "Married",
     "nationality": "Armenian",
     "licenseExpiryDate": "Today",
@@ -18,6 +19,7 @@
     "firstName": "heba",
     "middleName": "ahamd",
     "lastName": "mohammad",
+    "empPicture": null,
     "reportOption": "Indirect"
   }
 }
