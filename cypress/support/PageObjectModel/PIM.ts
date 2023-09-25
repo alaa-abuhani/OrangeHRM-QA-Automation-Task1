@@ -1,8 +1,15 @@
 class PIM {
   elements = {
     MainMenuItems: () => cy.get(".oxd-sidepanel-body"),
-    employeeName: () => cy.get(".orangehrm-edit-employee-name > .oxd-text"),
-    loader: () => cy.get(".oxd-loading-spinner"),
+    switch: () => cy.get(".oxd-switch-input"),
+    employeeName: () =>
+      cy.get(".orangehrm-edit-employee-name > .oxd-text", {
+        timeout: 20000,
+      }),
+    loader: () =>
+      cy.get(".oxd-loading-spinner", {
+        timeout: 20000,
+      }),
     //info Employee Details
     calender: () => cy.get(".oxd-calendar-wrapper"),
     licenseExpiryDate: () =>
@@ -67,15 +74,8 @@ class PIM {
     saveSuper: () => cy.get(".oxd-button--secondary"),
   };
   successAddEmployee(empNum: number, firstName: any, lastName: any) {
-<<<<<<< HEAD
     cy.visit(`/web/index.php/pim/viewPersonalDetails/empNumber/${empNum}`);
     this.elements.employeeName().should("contain", firstName + " " + lastName);
-=======
-    cy.visit(
-      `/web/index.php/pim/viewPersonalDetails/empNumber/${empNum}`
-    );
-    this.elements.success().should("contain", firstName + " " + lastName);
->>>>>>> 1c64cad589453635d8059e9735ee4006b7b4ebe7
   }
   addEmpDetailsInfo(user: any, supervisor: any) {
     //select license Expiry Date
@@ -121,42 +121,45 @@ class PIM {
     this.elements.jobTab().click({
       force: true,
     });
-
+    // fill job info
     this.elements
       .loader()
       .should("exist")
       .then(() => {
-        // select Administration
-        this.elements.empJobTitle().click({
-          force: true,
-        });
-        this.elements.dropDown().contains(user.jobTitle).click({
-          force: true,
-        });
-        //selsct Content Specialist
-        this.elements.empSubunit().click({
-          force: true,
-        });
-        this.elements.dropDown().contains(user.subUnit).click({
-          force: true,
-        });
-        // select Freelance
-        this.elements.empStatus().click({
-          force: true,
-        });
-        this.elements.dropDown().contains(user.empStatus).click({
-          force: true,
-        });
-
-        this.elements.save().click({
-          force: true,
-        });
-        //open report tab  to select supervisor
-        this.elements.reportTab().click({
-          force: true,
-        });
+        this.elements
+          .loader()
+          .should("not.exist")
+          .then(() => {
+            // select Administration
+            this.elements.empSubunit().click({
+              force: true,
+            });
+            this.elements.dropDown().contains(user.subUnit).click({
+              force: true,
+            });
+            // select Freelance
+            this.elements.empStatus().click({
+              force: true,
+            });
+            this.elements.dropDown().contains(user.empStatus).click({
+              force: true,
+            });
+            //selsct Content Specialist
+            this.elements.empJobTitle().click({
+              force: true,
+            });
+            this.elements.dropDown().contains(user.jobTitle).click({
+              force: true,
+            });
+            this.elements.save().click({
+              force: true,
+            });
+            //open report tab  to select supervisor
+            this.elements.reportTab().click({
+              force: true,
+            });
+          });
       });
-
     // select supervisor was added  in (beforeEach) block
     //Supervisor Name
     this.elements.supervisor().click({
@@ -189,24 +192,6 @@ class PIM {
     this.elements.MainMenuItems().contains("PIM").click({
       force: true,
     });
-<<<<<<< HEAD
-=======
-  }
-    // search by Id
-    checkSearchById(user: any, supervisor: any) {
-    this.elements.id().type(user.id);
-    this.elements.searchBtn().click({
-      force: true,
-    });
-    this.elements.search
-      .first_middle_name()
-      .should("contain", user.firstName + " " + user.middleName);
-    this.elements.search.last_name().should("contain", user.lastName);
-    this.elements.search.job_title().should("contain", user.jobTitle);
-    this.elements.search.emp_status().should("contain", user.empStatus);
-    this.elements.search.sub_unit().should("contain", user.subUnit);
-    this.elements.search.supervisor().should("contain", supervisor.firstName);
->>>>>>> 1c64cad589453635d8059e9735ee4006b7b4ebe7
   }
 }
 export default PIM;
